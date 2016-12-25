@@ -3,11 +3,11 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 datarootdir=@datarootdir@
 datadir=@datadir@
-includedir=@includedir@/liblibremotectl-0.1
+includedir=@includedir@/libremotectl-0.1
 
-Name: liblibremotectl
+Name: libremotectl
 Description: Sample library created by Anjuta project wizard.
 Version: @VERSION@
 Requires: 
-Libs: -L${libdir} -llibremotectl
+Libs: -L${libdir} -lremotectl -lboost_system
 Cflags: -I${includedir}
