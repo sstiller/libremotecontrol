@@ -1,0 +1,43 @@
+Enable PWM on RPI3
+
+sudo raspi-config --> i2c einschalten
+echo "pca9685" 0x70  | sudo tee /sys/devices/platform/soc/3f804000.i2c/i2c-1/new_device
+echo 1000000 | sudo tee duty_cycle
+echo 2000000 | sudo tee duty_cycle
+
+UDP
+
+Features:
+* Set PWN duty cycle
+* Signed int, 0 = center
+* Support up to 255 PWM channels
+
+
+
+Package format:
+
+* function code (2 Bytes)
+* data
+
+CRC in UDP
+Len in UDP
+
+1 - setLinuxServoPwm
+| field   | comment                   |
+| uint8_t | pwm device                |
+| uint8_t | PWM channel               |
+| int16_t | value, signed, 0 = center |
+
+2 - setLinuxGpioOutput
+| field   |  comment               |
+| uint8_t | device                 |
+| uint8_t | pin                    |
+| uint8_t | value; 0 = off, 1 = on |
+
+2 - linuxGpioInputUpdate
+| field   | comment                |
+| uint8_t | device                 |
+| uint8_t | pin                    |
+| uint8_t | value; 0 = off, 1 = on |
+
+
