@@ -25,6 +25,7 @@
 
 // stl
 #include <vector>
+#include <memory>
 
 
 class ControlCommand
@@ -49,7 +50,7 @@ public:
   /** Parses received UDP data.
     * @returns undefined ControlCommand on parsing error
     */
-  static ControlCommand deserialize(const std::vector<char>& data);
+  static std::shared_ptr<ControlCommand> deserialize(const std::vector<char>& data);
 
   /** Serializes the data of the command object.
     * children reimplement this function, but call this one first

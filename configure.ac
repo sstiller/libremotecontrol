@@ -27,4 +27,5 @@ AC_OUTPUT([
 Makefile
 src/libremotectl.pc
 src/Makefile
+test/Makefile
 ])

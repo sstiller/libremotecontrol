@@ -28,11 +28,11 @@ ControlCommand::ControlCommand(FunctionCode code)
 }
 
 // static
-ControlCommand ControlCommand::deserialize(const std::vector<char>& data)
+std::shared_ptr<ControlCommand> ControlCommand::deserialize(const std::vector<char>& data)
 {
   if(data.size() < sizeof(FunctionCode))
   {
-    return(ControlCommand(FunctionCode::Undefined));
+    throw(std::runtime_error("not enought bytes for function code"));
   }
   
   FunctionCode fc = static_cast<FunctionCode>((data.at(0) << 8) | (data.at(1)));
@@ -41,7 +41,7 @@ ControlCommand ControlCommand::deserialize(const std::vector<char>& data)
     {
       case FunctionCode::SetLinuxServoPwm:
       {
-        return(SetLinuxServoPwmCommand(data, sizeof(FunctionCode)));
+        return(std::make_shared<SetLinuxServoPwmCommand>(data, sizeof(FunctionCode)));
         break;
       }
 /*      case FunctionCode::SetLinuxGpioOutput:
@@ -53,16 +53,25 @@ ControlCommand ControlCommand::deserialize(const std::vector<char>& data)
         break;
       }*/
       default:
-        return(ControlCommand(FunctionCode::Undefined));
+    throw(std::runtime_error("not supported function code"));
     } //switch
 
   }catch(std::exception& exc)
   {
-    //TODO print error
-    return(ControlCommand(FunctionCode::Undefined));
+    throw;
   }
 }   
-     
+
+
+std::vector<char> ControlCommand::serialize() const
+{
+  std::vector<char> retVector;
+  uint16_t fc = static_cast<uint16_t>(functionCode);
+  retVector.push_back((fc >> 8) & 0xff);
+  retVector.push_back(fc & 0xff);
+  return(retVector);
+}
+
 ControlCommand::FunctionCode ControlCommand::getFunctionCode() const
 {
   return(functionCode);

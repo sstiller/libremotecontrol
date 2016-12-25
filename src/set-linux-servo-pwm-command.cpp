@@ -35,9 +35,11 @@ SetLinuxServoPwmCommand::SetLinuxServoPwmCommand(uint8_t pwmDevice, uint8_t pwmC
 SetLinuxServoPwmCommand::SetLinuxServoPwmCommand(const std::vector<char>& data, uint8_t offset)
 : ControlCommand(FunctionCode::SetLinuxServoPwm)
 {
-  if(data.size() <= (offset + dataSize()))
+  if(data.size() < (offset + dataSize()))
   {
-    throw(std::runtime_error("Error: Not enough data for SetLinuxServoPwmCommand"));
+    std::string msg("Error: Not enough data for SetLinuxServoPwmCommand: ");
+    msg += std::to_string(data.size()) + " < " + std::to_string(offset + dataSize());
+    throw(std::runtime_error(msg));
   }
   pwmDevice = data.at(offset++);
   pwmChannel = data.at(offset++);
