@@ -9,13 +9,30 @@ AM_CFLAGS =\
 	 -g
 
 noinst_PROGRAMS =  \
-	serialize-test
+	serialize-test \
+	servertest
 
 serialize_test_SOURCES =  \
-	serialize-test.cpp
+	serialize-test.cpp \
+	helpers.h \
+	helpers.cpp
 
 serialize_test_LDFLAGS = \
   -L$(abs_builddir)/../src/
 
 serialize_test_LDADD =  \
-  -lremotectl
+  -lremotectl \
+  -lboost_system
+
+
+servertest_SOURCES =  \
+	servertest.cpp \
+	helpers.h \
+	helpers.cpp
+
+servertest_LDFLAGS = \
+  -L$(abs_builddir)/../src/
+
+servertest_LDADD =  \
+  -lremotectl \
+  -lboost_system

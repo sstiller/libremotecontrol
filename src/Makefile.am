@@ -17,7 +17,9 @@ libremotectl_la_SOURCES = \
 	control-command.cpp \
 	control-command.h \
 	set-linux-servo-pwm-command.cpp \
-	set-linux-servo-pwm-command.h
+	set-linux-servo-pwm-command.h \
+	slave.cpp \
+	slave.h
 
 libremotectl_la_LDFLAGS = 
 

@@ -17,5 +17,6 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-int libremotectl_func (void);
-
+// local includes
+#include "set-linux-servo-pwm-command.h"
+#include "slave.h"

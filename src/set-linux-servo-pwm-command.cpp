@@ -45,7 +45,7 @@ SetLinuxServoPwmCommand::SetLinuxServoPwmCommand(const std::vector<char>& data, 
   pwmChannel = data.at(offset++);
   value = data.at(offset++);
   //TODO: check min/max value
-  if(value < -100 || value > 100)
+  if((value < -100) || (value > 100))
   {
     throw(std::runtime_error("Error: servo value invalid (-100...+100)!"));
   }

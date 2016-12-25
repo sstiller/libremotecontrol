@@ -19,25 +19,18 @@
 #include <iostream>
 #include <iomanip>
 
+// lib includes
+#include "../src/remotectl.h"
+
 // local includes
-#include "../src/set-linux-servo-pwm-command.h"
+#include "helpers.h"
 
 int main(int, char** argv)
 {
   std::cout << argv[0] << " started." << std::endl;
   SetLinuxServoPwmCommand cmd1(1, 2, 100);
   auto data = cmd1.serialize();
-  std::cout << std::hex;
-  int lineCnt = 0;
-  for(auto byte : data)
-  {
-    std::cout << " " <<  std::setfill('0') << std::setw(2) << (int)byte;
-    if(! (++lineCnt % 8))
-    {
-      std::cout << std::endl;
-    }
-  }
-  std::cout << std::dec << std::endl;
+  printHex(data);
 
   std::shared_ptr<ControlCommand> cmd2 = ControlCommand::deserialize(data);
   if(cmd2->getFunctionCode() == ControlCommand::FunctionCode::SetLinuxServoPwm)
@@ -48,17 +41,8 @@ int main(int, char** argv)
   }
   
   data = cmd2->serialize();
-  std::cout << std::hex;
-  lineCnt = 0;
-  for(auto byte : data)
-  {
-    std::cout << " " <<  std::setfill('0') << std::setw(2) << (int)byte;
-    if(! (++lineCnt % 8))
-    {
-      std::cout << std::endl;
-    }
-  }
-  std::cout << std::dec << std::endl;
+  printHex(data);
+
   if(cmd2->getFunctionCode() == ControlCommand::FunctionCode::SetLinuxServoPwm)
   {
     auto cmd3 = std::dynamic_pointer_cast<SetLinuxServoPwmCommand>(cmd2);
