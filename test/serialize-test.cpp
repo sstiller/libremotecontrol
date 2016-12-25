@@ -37,7 +37,6 @@ int main(int, char** argv)
       std::cout << std::endl;
     }
   }
-
   std::cout << std::dec << std::endl;
 
   std::shared_ptr<ControlCommand> cmd2 = ControlCommand::deserialize(data);
@@ -59,8 +58,20 @@ int main(int, char** argv)
       std::cout << std::endl;
     }
   }
-
-
+  std::cout << std::dec << std::endl;
+  if(cmd2->getFunctionCode() == ControlCommand::FunctionCode::SetLinuxServoPwm)
+  {
+    auto cmd3 = std::dynamic_pointer_cast<SetLinuxServoPwmCommand>(cmd2);
+    if(cmd3)
+    {
+      std::cout << "Device  = " << (int) cmd3->getDevice()
+                << "\nChannel = " << (int) cmd3->getChannel()
+                << "\nValue   = " << (int) cmd3->getValue()
+                << std::endl;
+    }else{
+      std::cout << "Cast failed!" << std::endl;
+    }
+  }
   
   //SetLinuxServoPwmCommand cmd1(0, 1, 0);
   return(0);

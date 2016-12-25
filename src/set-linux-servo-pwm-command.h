@@ -29,7 +29,11 @@ class SetLinuxServoPwmCommand: public ControlCommand
 public:
   SetLinuxServoPwmCommand(uint8_t pwmDevice, uint8_t pwmChannel, int8_t value);
   SetLinuxServoPwmCommand(const std::vector<char>& data, uint8_t offset);
-     
+
+  uint8_t getDevice() const { return(pwmDevice);};
+  uint8_t getChannel() const { return(pwmChannel);};
+  uint8_t getValue() const { return(value);};
+   
   virtual std::vector<char> serialize() const override;
   static unsigned int dataSize();
 protected:
