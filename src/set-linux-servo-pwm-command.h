@@ -32,7 +32,7 @@ public:
 
   uint8_t getDevice() const { return(pwmDevice);};
   uint8_t getChannel() const { return(pwmChannel);};
-  uint8_t getValue() const { return(value);};
+  int8_t getValue() const { return(value);};
    
   virtual std::vector<char> serialize() const override;
   static unsigned int dataSize();
