@@ -17,6 +17,12 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef _REMOTECTL_H_
+#define _REMOTECTL_H_
+
 // local includes
 #include "set-linux-servo-pwm-command.h"
 #include "slave.h"
+#include "control-command.h"
+
+#endif // _REMOTECTL_H_
