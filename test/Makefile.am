@@ -18,11 +18,12 @@ serialize_test_SOURCES =  \
 	helpers.cpp
 
 serialize_test_LDFLAGS = \
-  -L$(abs_builddir)/../src/
+  -L$(abs_builddir)/../src/ \
+  -pthread
 
 serialize_test_LDADD =  \
   -lremotectl \
-  -lboost_system
+  -lboost_system 
 
 
 servertest_SOURCES =  \
@@ -31,7 +32,8 @@ servertest_SOURCES =  \
 	helpers.cpp
 
 servertest_LDFLAGS = \
-  -L$(abs_builddir)/../src/
+  -L$(abs_builddir)/../src/ \
+  -pthread
 
 servertest_LDADD =  \
   -lremotectl \

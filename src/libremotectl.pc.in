@@ -9,5 +9,5 @@ Name: libremotectl
 Description: Sample library created by Anjuta project wizard.
 Version: @VERSION@
 Requires: 
-Libs: -L${libdir} -lremotectl -lboost_system
-Cflags: -I${includedir}
+Libs: -L${libdir} -lremotectl -lboost_system -pthread
+Cflags: -std=c++11 -I${includedir}
