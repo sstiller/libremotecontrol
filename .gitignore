@@ -14,3 +14,14 @@ config.sub
 configure
 depcomp
 *.anjuta
+Makefile
+config.*
+libtool
+.deps
+.libs
+*.lo
+*.la
+stamp-h1
+*.o
+test/serialize-test
+test/servertest
