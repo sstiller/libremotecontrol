@@ -25,3 +25,4 @@ stamp-h1
 *.o
 test/serialize-test
 test/servertest
+build*

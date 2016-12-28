@@ -16,7 +16,9 @@ lib_LTLIBRARIES = \
 libremotectl_la_SOURCES = \
 	control-command.cpp \
 	set-linux-servo-pwm-command.cpp \
-	slave.cpp 
+	slave.cpp \
+	master.cpp
+
 
 libremotectl_la_LDFLAGS = 
 
@@ -28,7 +30,8 @@ include_HEADERS = \
 	remotectl.h \
 	control-command.h \
 	set-linux-servo-pwm-command.h \
-	slave.h
+	slave.h \
+	master.h
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libremotectl.pc
